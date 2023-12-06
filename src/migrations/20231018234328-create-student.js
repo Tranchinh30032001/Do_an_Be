@@ -21,7 +21,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      nganh_id: {
+      khoa_id: {
         type: Sequelize.STRING
       },
       ngay_sinh: {
@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       avatar: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       que_quan: {
         type: Sequelize.STRING
@@ -47,6 +47,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       role_id: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      cccd: {
         allowNull: false,
         type: Sequelize.STRING
       },

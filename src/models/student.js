@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
 
       Student.hasOne(models.Credential,  {foreignKey: "mssv", targetKey: "keyMaps", as: "mssvData"})
 
-      Student.belongsTo(models.ChuyenNganh, {foreignKey: "nganh_id", as: "nganhData"})
-
       Student.belongsTo(models.Role, {foreignKey: "role_id", as: "roleData"})
 
       // Student.belongsToMany(models.HoiThao, {through: models.StudentHoiThao})
@@ -25,14 +23,15 @@ module.exports = (sequelize, DataTypes) => {
     mssv: DataTypes.STRING,
     ho_ten: DataTypes.STRING,
     lop_id: DataTypes.STRING,
-    nganh_id: DataTypes.STRING,
+    khoa_id: DataTypes.STRING,
     ngay_sinh: DataTypes.DATE,
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
-    avatar: DataTypes.STRING,
+    avatar: DataTypes.TEXT,
     que_quan: DataTypes.STRING,
     gioi_tinh: DataTypes.STRING,
     tinh_trang: DataTypes.STRING,
+    cccd: DataTypes.STRING,
     role_id: DataTypes.STRING
   }, {
     sequelize,

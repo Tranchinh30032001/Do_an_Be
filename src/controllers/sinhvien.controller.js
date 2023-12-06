@@ -10,6 +10,12 @@ class SinhVienController {
             metadata: await SinhVienService.getInfoStudent(mssv)
         }).send(res)
     }
+
+    getAll = async (req, res) => {
+        new SuccessResponse({
+            metadata: await SinhVienService.getAllSinhVien()
+        }).send(res)
+    }
 }
 
 module.exports = new SinhVienController()

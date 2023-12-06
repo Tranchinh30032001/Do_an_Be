@@ -19,6 +19,7 @@ module.exports = {
       },
       isJoin: {
         defaultValue: false,
+        allowNull: false,
         type: Sequelize.BOOLEAN
       },
       createdAt: {

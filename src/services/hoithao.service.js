@@ -7,7 +7,8 @@ const { isArray } = require("lodash");
 
 class HoiThaoService {
   static createHoiThao = async (body) => {
-    const { hoithao_id, ten_hoithao, nguoi_chutri, ngay_batdau, ngay_ketthuc, lop } = body;
+    const { hoithao_id, ten_hoithao, nguoi_chutri, des, ngay_batdau, ngay_ketthuc, lop } = body;
+
 
     const findHoiThao = await db.HoiThao.findOne({
       where: {
@@ -26,6 +27,7 @@ class HoiThaoService {
       hoithao_id,
       ten_hoithao,
       nguoi_chutri,
+      des,
       ngay_batdau: start,
       ngay_ketthuc: end,
     });
@@ -96,8 +98,19 @@ class HoiThaoService {
   };
 
   static getHoiThaoSinhVien = async (mssv) => {
-    const res = await db.StudentHoiThao.findAll()
-    console.log({res});
+    const res = await db.StudentHoiThao.findOne({
+      where: {
+        mssv
+      }
+    })
+    if (res) {
+      return {
+        res
+      };
+    }
+    return {
+      metadata: null,
+    };
   }
 
 }

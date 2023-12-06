@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       avatar: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       que_quan: {
         type: Sequelize.STRING
@@ -42,6 +42,14 @@ module.exports = {
         type: Sequelize.STRING
       },
       role_id: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      trinh_do: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      cccd: {
         allowNull: false,
         type: Sequelize.STRING
       },

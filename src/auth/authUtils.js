@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken')
 const { asyncHandler } = require('../helpers/asyncHandler')
 const { AuthFailureError, NotFoundError, } = require('../core/error.response')
 const HEADER = {
-    API_KEY: 'x-api-key',
     AUTHORIZATION: 'authorization',
     CLIENT_ID: 'client-id',
 }
@@ -22,7 +21,7 @@ const createTokenPair = async (payload, publicKey, privateKey) => {
 
         return { accessToken, refreshToken }
     } catch (error) {
-        console.log('error: ', error)
+        throw new Error(error)
     }
 }
 

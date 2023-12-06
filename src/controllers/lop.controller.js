@@ -19,8 +19,9 @@ class LopController {
 
     getClass = async (req, res) => {
         const {lop_id} = req.params;
+        console.log({lop_id});
         new SuccessResponse({
-            metadata: await LopService.getAllClass(lop_id)
+            metadata: await LopService.getClass(lop_id)
         }).send(res)
     }
 }

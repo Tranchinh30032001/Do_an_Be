@@ -3,12 +3,13 @@
 const express = require('express')
 const sinhVienController = require('../../controllers/sinhvien.controller')
 const { asyncHandler } = require('../../helpers/asyncHandler')
-const { authentication } = require("../../middleware/verify-access-token")
+const { authentication, handleRoleIdGiaoVien} = require("../../middleware/verify-access-token")
 const router = express.Router()
 
 
-router.use(authentication)
 router.get('/qldt/info/student/:mssv', asyncHandler(sinhVienController.getInfoStudent))
+router.use(handleRoleIdGiaoVien)
+router.get('/qldt/all-sinhvien', [handleRoleIdGiaoVien ,asyncHandler(sinhVienController.getAll)])
 
 //authentication
 // router.use(authentication)

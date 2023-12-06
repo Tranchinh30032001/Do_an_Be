@@ -17,6 +17,21 @@ class CredentialService {
         }
     }
 
+    static createCredentialGiaoVien = async ({ msgv, password, publicKey, privateKey}) => {
+        try {
+            const tokens = await db.CredentialGiaoVien.create({
+                msgv,
+                password,
+                publicKey,
+                privateKey,
+            })
+
+            return tokens ? tokens.publicKey : null
+        } catch (error) {
+            return error
+        }
+    }
+
     static findByUserId = async (mssv) => {
         const res = await db.Credential.findOne({
             where: {

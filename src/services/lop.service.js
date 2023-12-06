@@ -59,8 +59,8 @@ class LopService {
           };
     }
 
-    static getClass = async({lop_id}) => {
-        const lop = await db.lop.findOne({
+    static getClass = async(lop_id) => {
+        const lop = await db.Lop.findOne({
             where: {
                 lop_id
             }

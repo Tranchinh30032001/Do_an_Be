@@ -1,7 +1,7 @@
 'use strict'
 const { CREATED, SuccessResponse } = require("../core/success.response")
 const HoiThaoService = require("../services/hoithao.service")
-
+console.log("hoi thao");
 
 class HoiThaoController {
     createHoiThao = async (req, res) => {
@@ -25,7 +25,6 @@ class HoiThaoController {
 
     getHoiThaoSinhVien = async (req, res) => {
         const {mssv} = req.params;
-        console.log({mssv});
         new SuccessResponse({
             metadata: await HoiThaoService.getHoiThaoSinhVien(mssv)
         }).send(res)

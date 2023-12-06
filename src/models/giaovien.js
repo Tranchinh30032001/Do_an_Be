@@ -22,8 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     phone: DataTypes.STRING,
     khoa_id: DataTypes.STRING,
-    avatar: DataTypes.STRING,
-    role_id: DataTypes.STRING
+    avatar: DataTypes.TEXT,
+    role_id: DataTypes.STRING,
+    trinh_do: DataTypes.STRING,
+    cccd: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'GiaoVien',

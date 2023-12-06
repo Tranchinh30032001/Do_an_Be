@@ -2,33 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("HoiThaos", {
+    await queryInterface.createTable("CredentialGiaoViens", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      hoithao_id: {
-        allowNull: false,
+      msgv: {
         type: Sequelize.STRING,
       },
-      ten_hoithao: {
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      privateKey: { allowNull: false, type: Sequelize.STRING },
+      publicKey: {
         allowNull: false,
         type: Sequelize.STRING,
-      },
-      nguoi_chutri: {
-        allowNull: false,
-        type: Sequelize.STRING,
-      },
-      des: {
-        type: Sequelize.TEXT
-      },
-      ngay_batdau: {
-        type: Sequelize.DATE
-      },
-      ngay_ketthuc: {
-        type: Sequelize.DATE
       },
       createdAt: {
         allowNull: false,
@@ -41,6 +32,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("HoiThaos");
+    await queryInterface.dropTable("CredentialGiaoViens");
   },
 };

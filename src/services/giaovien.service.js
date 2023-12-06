@@ -6,30 +6,30 @@ const {getInfoData} = require("../utils");
 const { ConflictRequestError } = require("../core/error.response");
 
 
-class SinhVienService {
-    static getInfoStudent  = async(mssv) => {
-        const student = await db.Student.findOne({
+class GiaoVienService {
+    static getInfoGiaoVien  = async(msgv) => {
+        const giaovien = await db.GiaoVien.findOne({
             where: {
-                mssv
+                msgv
             },
         })
 
-        if (!student) {
-            throw new ConflictRequestError("Errors: Student Not Found");
+        if (!giaovien) {
+            throw new ConflictRequestError("Errors: Giaovien Not Found");
         }
 
         return {
             code: 200,
-            student
+            giaovien
           };
     }
 
-    static getAllSinhVien = async () => {
-        const allSinhVien = await db.Student.findAll();
-        if (allSinhVien?.length > 0) {
+    static getAllGiaoVien = async () => {
+        const allGiaoVien = await db.GiaoVien.findAll();
+        if (allGiaoVien?.length > 0) {
           return {
             code: 200,
-            allSinhVien,
+            allGiaoVien,
           };
         }
         return {
@@ -40,4 +40,4 @@ class SinhVienService {
 }
 
 
-module.exports = SinhVienService;
+module.exports = GiaoVienService;
