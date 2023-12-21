@@ -16,6 +16,22 @@ class SinhVienController {
             metadata: await SinhVienService.getAllSinhVien()
         }).send(res)
     }
+
+    updateStudent = async (req, res) => {
+        const {mssv} = req.params
+        const updateInfo = req.body
+
+        new SuccessResponse({
+            metadata: await SinhVienService.updateInfoStudent(mssv, updateInfo)
+        }).send(res)
+    }
+
+    delete = async(req, res) => {
+        const {mssv} = req.params
+        new SuccessResponse({
+            metadata: await SinhVienService.deleteSinhVien(mssv)
+        }).send(res)
+    }
 }
 
 module.exports = new SinhVienController()

@@ -10,12 +10,10 @@ const { getInfoData } = require("../utils");
 const { ConflictRequestError, BadRequestError, AuthFailureError } = require("../core/error.response");
 // const { findByEmail } = require("./shop.service")
 const bryct = require("bcrypt");
-const { log } = require("console");
 const SinhVienService = require("./sinhvien.service");
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 require("dotenv").config();
-const { cryptoWaitReady} = require ('@polkadot/util-crypto');
-
+const { cryptoWaitReady } = require("@polkadot/util-crypto");
 
 //0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a
 
@@ -34,13 +32,7 @@ class AccessService {
 
     return delKey;
   };
-  /*
-        1-check email in db
-        2-match password in db
-        3-create PRT and PT and save
-        4-generate tokens
-        5-get data return login
-    */
+
   static signIn = async ({ mssv, password, refreshToken = null }) => {
     const student = await db.Credential.findOne({
       where: {
@@ -90,12 +82,13 @@ class AccessService {
       role_id,
       cccd,
     } = data?.data;
-    //step1: check email exists??
+
+    let hash = null;
 
     await cryptoWaitReady();
-const keyring = new Keyring({ type: "sr25519" });
-const alice ="5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
-const admin = keyring.addFromUri("0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a");
+    const keyring = new Keyring({ type: "sr25519" });
+    const alice = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
+    const admin = keyring.addFromUri("0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90954f7b76361f6edb5c0a");
     const wsProvider = new WsProvider("ws://127.0.0.1:9944");
     const api = await ApiPromise.create({ provider: wsProvider });
     const create_student = api.tx.student.createStudent(
@@ -113,9 +106,7 @@ const admin = keyring.addFromUri("0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90
     api.tx.sudo.sudo(create_student).signAndSend(admin, ({ events = [], status }) => {
       console.log("Proposal status:", status.type);
       if (status.isInBlock) {
-        console.error("You have just upgraded your chain");
-        console.log("Included at block hash", status.asInBlock.toHex());
-        console.log("Events:");
+        hash = status.asInBlock.toHex();
       } else if (status.isFinalized) {
         console.log("Finalized block hash", status.asFinalized.toHex());
       }
@@ -161,7 +152,8 @@ const admin = keyring.addFromUri("0xe5be9a5092b81bca64be81d212e7f2f9eba183bb7a90
       return {
         code: 201,
         metadata: {
-          shop: getInfoData({ fields: ["mssv", "name"], object: newStudent }),
+          data: getInfoData({ fields: ["mssv", "name"], object: newStudent }),
+          hash,
         },
       };
     }

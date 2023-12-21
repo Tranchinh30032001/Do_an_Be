@@ -37,6 +37,43 @@ class SinhVienService {
           metadata: null,
         };
       };
+
+      static updateInfoStudent = async (mssv, updateInfo) => {
+        try {
+          const result = await db.Student.update(updateInfo, {
+            where: {mssv}
+          })
+          if (result[0] > 0) {
+            const updatedSinhVien = result[1][0];
+             return {
+              code: 200,
+              updatedSinhVien,
+            };
+  
+          } else {
+            throw new ConflictRequestError("Errors: Student Not Found");
+          }
+        } catch (error) {
+          throw new Error(error)
+        }
+      }
+      static deleteSinhVien = async(mssv) => {
+        try {
+          const result = await SinhVien.destroy({
+            where: { mssv: mssv },
+          });
+          if (result > 0) {
+            return {
+              code: 200,
+              mssv,
+            };
+          } else {
+            console.log('Không tìm thấy sinh viên để xóa.');
+          }
+        } catch (error) {
+          throw new ConflictRequestError("Errors: Student Not Found");
+        }
+      }
 }
 
 

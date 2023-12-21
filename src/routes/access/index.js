@@ -14,9 +14,6 @@ router.post('/qldt/signin-giaovien', asyncHandler(accessController.signInGiaoVie
 
 router.post("/qldt/encode-qr", asyncHandler(accessController.encodeQr))
 router.post("/qldt/decode-qr", asyncHandler(accessController.decodeQr))
-//authentication
-// router.use(authentication)
-// router.post('/shop/logout', asyncHandler(accessController.logout))
 
 
 module.exports = router

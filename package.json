@@ -7,7 +7,9 @@
   "scripts": {
     "start": "npx kill-port 3055 && node --watch server.js",
     "restart": "npx kill-port 3055 && node --watch server.js",
-    "migrate": "cd src && npx sequelize-cli db:migrate"
+    "migrate": "cd src && npx sequelize-cli db:migrate",
+    "bee": "sudo docker start a4d4 && yarn start",
+    "fee": "cd && cd Resource/fe/do_ann_admin && yarn dev"
   },
   "dependencies": {
     "@polkadot/api": "^10.11.1",

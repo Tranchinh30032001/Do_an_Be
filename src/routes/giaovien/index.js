@@ -11,9 +11,6 @@ router.get('/qldt/all-giaovien', [handleRoleIdAdmin,asyncHandler(giaoVienControl
 
 router.get('/qldt/info/giaovien/:msgv', [handleRoleIdGiaoVien,asyncHandler(giaoVienController.getInfoGiaoVien)])
 
-//authentication
-// router.use(authentication)
-// router.post('/shop/logout', asyncHandler(accessController.logout))
 
 
 module.exports = router
